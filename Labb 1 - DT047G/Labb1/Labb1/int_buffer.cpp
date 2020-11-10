@@ -1,6 +1,5 @@
 #include "int_buffer.h"
 
-
 // Constructor initializer
 int_buffer::int_buffer(size_t size) : startPtr((new int[size])), endPtr(startPtr + size)
 {
@@ -69,7 +68,7 @@ int_buffer::~int_buffer()
 }
 
 // move construct
-int_buffer::int_buffer(int_buffer&& rhs)
+int_buffer::int_buffer(int_buffer&& rhs) noexcept
 {
 
 }
@@ -92,7 +91,7 @@ int_buffer& int_buffer::operator=(const int_buffer& rhs)
 	return *this;
 }
 
-int_buffer& int_buffer::operator=(int_buffer&& rhs)
+int_buffer& int_buffer::operator=(int_buffer&& rhs) noexcept
 {
 
 }
