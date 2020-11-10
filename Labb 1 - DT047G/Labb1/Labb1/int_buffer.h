@@ -2,6 +2,7 @@
 #ifndef INT_BUFFER_H
 #define INT_BUFFER_H
 #include <memory>
+#include <iostream>
 
 class int_buffer {
 public:
@@ -34,11 +35,13 @@ public:
 	const int* begin() const;
 
 	const int* end() const;
+
 	~int_buffer();
 
 private:
-	int* p;
-	std::unique_ptr<int> ptr;
-	size_t buf_size;
+	int* startPtr;
+	int* endPtr;
+	//std::unique_ptr<int> startPtr;
+	//std::unique_ptr<int> endPtr;
 };
 #endif

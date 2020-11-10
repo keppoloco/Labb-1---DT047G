@@ -1,4 +1,3 @@
-#include <iostream>
 #include "int_buffer.h"
 int main()
 {
