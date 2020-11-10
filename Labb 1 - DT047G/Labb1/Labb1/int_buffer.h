@@ -15,7 +15,7 @@ public:
 	int_buffer(const int_buffer& rhs);
 
 	// move construct
-	int_buffer(int_buffer&& rhs);
+	int_buffer(int_buffer&& rhs) noexcept;
 
 	// copy assign
 	int_buffer& operator =(const int_buffer& rhs);

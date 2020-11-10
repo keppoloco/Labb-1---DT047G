@@ -8,7 +8,10 @@ int_buffer::int_buffer(size_t size) : startPtr((new int[size])), endPtr(startPtr
 
 int_buffer::int_buffer(const int* source, size_t size)
 {
+	startPtr = new int[size];
+	endPtr = startPtr + size;
 
+	std::copy(source, source + size, startPtr);
 }
 
 // Size of buffer
@@ -70,7 +73,11 @@ int_buffer::~int_buffer()
 // move construct
 int_buffer::int_buffer(int_buffer&& rhs) noexcept
 {
+	startPtr = rhs.startPtr;
+	endPtr	 = rhs.endPtr;
 
+	rhs.startPtr = nullptr;
+	rhs.endPtr	 = nullptr;
 }
 
 // copy assign
@@ -93,7 +100,17 @@ int_buffer& int_buffer::operator=(const int_buffer& rhs)
 
 int_buffer& int_buffer::operator=(int_buffer&& rhs) noexcept
 {
+	if (this != &rhs)
+	{
+		delete[] startPtr;
+		delete[] endPtr;
 
+		startPtr = rhs.startPtr;
+		endPtr	 = rhs.endPtr;
+
+		rhs.startPtr = rhs.endPtr = nullptr;
+	}
+	return *this;
 }
 
 // move assign
