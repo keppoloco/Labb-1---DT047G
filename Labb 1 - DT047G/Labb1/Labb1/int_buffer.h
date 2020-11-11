@@ -19,7 +19,7 @@ public:
 
 	// copy assign
 	int_buffer& operator =(const int_buffer& rhs);
-	int_buffer& operator =(int_buffer&& rhs);
+	int_buffer& operator =(int_buffer&& rhs) noexcept;
 
 	// move assign
 	int& operator [](size_t index);
