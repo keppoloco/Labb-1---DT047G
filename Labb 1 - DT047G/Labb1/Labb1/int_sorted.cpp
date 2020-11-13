@@ -1,0 +1,86 @@
+#include "int_sorted.h"
+
+int_sorted::int_sorted(const int* source, size_t size) 
+{
+
+}
+
+
+size_t int_sorted::size() const 
+{
+	return _buffer.size();
+}
+
+int* int_sorted::insert(int value)
+{
+
+}
+
+const int* int_sorted::begin() const
+{
+	return _buffer.begin();
+}
+
+const int* int_sorted::end() const
+{
+	return _buffer.end();
+}
+
+int_sorted int_sorted::sort(const int* begin, const int* end) {
+	if (begin == end) return
+		int_sorted(nullptr, 0);
+	if (begin == end - 1) return
+		int_sorted(begin, 1);
+	ptrdiff_t half = (end - begin) / 2; //
+	const int* mid = begin + half;
+	return sort(begin, mid).merge(sort(
+		mid, end));
+}
+
+int_sorted int_sorted::merge(const int_sorted& merge_with) const
+{
+	int_buffer c(merge_with.size() + size());
+
+	const int* thisIterator = begin();
+	const int* otherIterator = merge_with.begin();
+	int* c_buff = c.begin();
+
+	while ( thisIterator != end() && otherIterator != merge_with.end() )
+	{
+		if (*thisIterator < *otherIterator)
+		{
+			*c_buff = *thisIterator;
+
+			c_buff++;
+
+			otherIterator++;
+		}
+		else 
+		{
+			*c_buff = *otherIterator;
+
+			c_buff++;
+
+			thisIterator++;
+		}
+	}
+
+	while ( thisIterator != end() )
+	{
+		*c_buff = *thisIterator;
+
+		c_buff++;
+
+		thisIterator++;
+	}
+
+	while ( otherIterator != merge_with.end())
+	{
+		*c_buff = *otherIterator;
+
+		c_buff++;
+
+		otherIterator++;
+	}
+}
+

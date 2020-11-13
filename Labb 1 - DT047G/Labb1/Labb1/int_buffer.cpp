@@ -66,14 +66,17 @@ int_buffer::~int_buffer()
 		delete[] startPtr;
 
 	// point on null
-	startPtr = nullptr;
-	endPtr	 = nullptr;
+	startPtr = endPtr = nullptr;
 }
 
 // copy assign
 int_buffer& int_buffer::operator=(const int_buffer& rhs)
 {
-	if (this != &rhs)
+	int_buffer temp(rhs);
+	swap(*this, temp);
+
+	return *this;
+	/*if (this != &rhs)
 	{
 		// Delete old data
 		delete[] startPtr;
@@ -84,7 +87,7 @@ int_buffer& int_buffer::operator=(const int_buffer& rhs)
 
 		std::copy(rhs.startPtr, endPtr, startPtr);
 	}
-	return *this;
+	return *this;*/
 }
 
 // move construct

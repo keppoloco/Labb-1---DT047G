@@ -19,9 +19,10 @@ public:
 
 	// copy assign
 	int_buffer& operator =(const int_buffer& rhs);
-	int_buffer& operator =(int_buffer&& rhs) noexcept;
 
 	// move assign
+	int_buffer& operator =(int_buffer&& rhs) noexcept;
+
 	int& operator [](size_t index);
 
 	const int& operator[](size_t index) const;
@@ -37,6 +38,12 @@ public:
 	const int* end() const;
 
 	~int_buffer();
+
+	friend void swap(int_buffer& curr, int_buffer& other)
+	{
+		using std::swap;
+		swap(curr, other);
+	}
 
 private:
 	int* startPtr;
