@@ -8,22 +8,31 @@ int_sorted::int_sorted(const int* source, size_t size)
 
 size_t int_sorted::size() const 
 {
-	return _buffer.size();
+	return buffer_.size();
 }
 
 int* int_sorted::insert(int value)
 {
+	int_sorted val(&value, 1);
+	std::move(merge(val).buffer_);
 
+	for (auto it = buffer_.begin(); it != buffer_.end(); it++)
+	{
+		if (*it == value) 
+		{
+			return buffer_.end() - *it;
+		}
+	}
 }
 
 const int* int_sorted::begin() const
 {
-	return _buffer.begin();
+	return buffer_.begin();
 }
 
 const int* int_sorted::end() const
 {
-	return _buffer.end();
+	return buffer_.end();
 }
 
 int_sorted int_sorted::sort(const int* begin, const int* end) {
@@ -82,5 +91,8 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const
 
 		otherIterator++;
 	}
+
+	int_sorted finalBuff(nullptr, 0);
+	finalBuff.buffer_ = std::move(c);
 }
 

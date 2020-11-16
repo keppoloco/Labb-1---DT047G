@@ -62,18 +62,14 @@ int_buffer::int_buffer(const int_buffer& rhs) : int_buffer(rhs.startPtr,rhs.size
 int_buffer::~int_buffer()
 {
 	// delete allocated memory
-	if(startPtr != nullptr)
-		delete[] startPtr;
-
-	// point on null
-	startPtr = endPtr = nullptr;
+	delete[] startPtr;
 }
 
 // copy assign
 int_buffer& int_buffer::operator=(const int_buffer& rhs)
 {
 	int_buffer temp(rhs);
-	swap(*this, temp);
+	swap(temp);
 
 	return *this;
 	/*if (this != &rhs)
@@ -93,19 +89,14 @@ int_buffer& int_buffer::operator=(const int_buffer& rhs)
 // move construct
 int_buffer::int_buffer(int_buffer&& rhs) noexcept : startPtr(nullptr),endPtr(nullptr)
 {
-	*this = std::move(rhs);
+	swap(rhs);
+	//*this = std::move(rhs);
 }
 
 // move assign
 int_buffer& int_buffer::operator=(int_buffer&& rhs) noexcept 
 {
-	if (this != &rhs)
-	{
-		startPtr = rhs.startPtr;
-		endPtr	 = rhs.endPtr;
-
-		rhs.startPtr = rhs.endPtr = nullptr;
-	}
+	swap(rhs);
 	return *this;
 }
 
@@ -117,4 +108,10 @@ int& int_buffer::operator[](size_t index)
 const int& int_buffer::operator[](size_t index) const
 {
 	return startPtr[index];
+}
+
+void int_buffer::swap(int_buffer& rhs)
+{
+	std::swap(this->startPtr, rhs.startPtr);
+	std::swap(this->endPtr, rhs.endPtr);
 }

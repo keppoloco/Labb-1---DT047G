@@ -39,15 +39,16 @@ public:
 
 	~int_buffer();
 
-	friend void swap(int_buffer& curr, int_buffer& other)
+	/*friend void swap(int_buffer& curr, int_buffer& other)
 	{
 		using std::swap;
 		swap(curr, other);
 	}
-
+	*/
 private:
 	int* startPtr;
 	int* endPtr;
+	void swap(int_buffer& rhs);
 	//std::unique_ptr<int> startPtr;
 	//std::unique_ptr<int> endPtr;
 };

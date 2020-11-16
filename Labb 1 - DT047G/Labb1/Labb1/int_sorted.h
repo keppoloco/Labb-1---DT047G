@@ -20,7 +20,7 @@ public:
 	int_sorted sort(const int* begin, const int* end);
 
 private: 
-	int_buffer _buffer;
+	int_buffer buffer_;
 };
 
 #endif
