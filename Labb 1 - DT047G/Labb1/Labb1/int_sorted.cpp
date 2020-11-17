@@ -7,6 +7,11 @@ int_sorted::int_sorted(const int* source, size_t size) : buffer_(nullptr, 0)
 		int_buffer temp(source, size);
 		buffer_ = std::move(temp);
 	}
+	if (size > 1)
+	{
+		int_sorted sorted_buffer = sort(source, source+size);
+		buffer_ = std::move(sorted_buffer.buffer_);
+	}
 
 }
 
