@@ -3,6 +3,7 @@
 #ifndef INT_SORTED
 #define INT_SORTED
 #include "int_buffer.h"
+#include <algorithm>
 class int_sorted {
 public:
 	int_sorted() = delete;
