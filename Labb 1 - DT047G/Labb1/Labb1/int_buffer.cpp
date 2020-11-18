@@ -115,3 +115,4 @@ void int_buffer::swap(int_buffer& rhs)
 	std::swap(this->startPtr, rhs.startPtr);
 	std::swap(this->endPtr, rhs.endPtr);
 }
+
