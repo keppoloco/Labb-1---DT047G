@@ -7,11 +7,14 @@ int_sorted::int_sorted(const int* source, size_t size) : buffer_(nullptr, 0)
 {
 	if (size > 1)
 	{
+		//buffer_ = std::move(sort(source, source + size).buffer_);
 		buffer_ = sort(source, source+size).buffer_;
 	}
 	else
 	{
 		buffer_ = int_buffer(source, size);
+		/*int_buffer temp(source, size);
+		buffer_ = std::move(temp);*/
 	}
 }
 
@@ -30,8 +33,8 @@ int* int_sorted::insert(int value)
 {
 	int_sorted val(&value, 1);
 
-	//*this = merge(val);
-	buffer_ = std::move(merge(val).buffer_);
+	*this = merge(val);
+	//buffer_ = std::move(merge(val).buffer_);
 
 	/*for (auto it = buffer_.begin(); it != buffer_.end(); it++)
 	{
@@ -41,8 +44,6 @@ int* int_sorted::insert(int value)
 		}
 	}*/
 	return std::find(buffer_.begin(), buffer_.end(), value);
-	// alternativt lower bound:
-	// std::lower_bound (buffer_.begin(), buffer_.end(), value)
 }
 
 const int* int_sorted::begin() const
