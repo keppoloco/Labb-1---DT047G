@@ -1,9 +1,13 @@
+// Laboration 1 - Programmeringsmetodik, dt047g
+// Timmy Nord (tino1800)
+// main.cpp Created 10 Nov, Last edited 19 Nov
+// definitioner av int_buffers metoder
 #include "int_buffer.h"
 #include <algorithm>
 // Constructor initializer
-int_buffer::int_buffer(size_t size) : startPtr((new int[size])), endPtr(startPtr + size)
+int_buffer::int_buffer(size_t size) : startPtr((new int[size]())), endPtr(startPtr + size)
 {
-	std::cout << "Initializer constructor doing its thaaang." << std::endl;
+	
 }
 
 int_buffer::int_buffer(const int* source, size_t size) : int_buffer(size)
@@ -55,7 +59,7 @@ int_buffer::int_buffer(const int_buffer& rhs) : int_buffer(rhs.startPtr,rhs.size
 	startPtr = new int[rhs.size()];
 	endPtr	 = rhs.startPtr + rhs.size();*/
 
-	std::copy(rhs.startPtr, rhs.endPtr, startPtr);
+	//std::copy(rhs.startPtr, rhs.endPtr, startPtr);
 }
 
 // Destructor

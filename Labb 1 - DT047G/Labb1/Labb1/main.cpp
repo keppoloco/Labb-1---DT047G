@@ -1,24 +1,58 @@
+// Laboration 1 - Programmeringsmetodik, dt047g
+// Timmy Nord (tino1800)
+// main.cpp Created 10 Nov, Last edited 19 Nov
+// innehåller laborations uppgifter
+
 #include "int_buffer.h"
-void f(int_buffer buf);
+#include "int_sorted.h"
+
+#include <random>
+#include <time.h>
+void f(int_buffer &buf);
+
+void asd(int_sorted& const v)
+{
+	for (const int* i = v.begin(); i != v.end(); i++) {
+		std::cout << *i << " ";
+	}
+	std::cout << '\n';
+}
+
 int main()
 {
-	int_buffer buf(10);
+	srand(time(NULL));
+	int_buffer buf(200);
 
-	f((buf));
+	f(buf);
+
+	int_sorted sorted(buf.begin(), buf.size());
+	//int_sorted lol(buf.begin(), buf.size());
+
+	sorted.sort(buf.begin(), buf.end());
+
+	sorted.insert(755);
+	sorted.insert(1002);
+
+	sorted.sort(buf.begin(), buf.end());
+
+	sorted.print();
+
+
+
+	//sorted = sorted.merge(lol);
+	//printBuffer(sorted.getHead());
+	//std::cout << sorted.insert(67) << std::endl;
 
 	std::cin.ignore();
 	return 0;
 }
 
-void f(int_buffer buf)
+void f(int_buffer &buf)
 {
-	std::cout << "Inserting integers to buffer.." << std::endl;
 	for (int* i = buf.begin(); i < buf.end(); i++)
 	{
-		*i = i - buf.begin() + 1;
+		int numb = rand() % 200 + 1;
+		*i = numb;
 	}
-
-	std::cout << "Displaying integers in buffer: " << std::endl;
-	for (const int* i = buf.begin(); i < buf.end(); i++)
-		std::cout << *i << std::endl;
+	std::cout << std::endl;
 }

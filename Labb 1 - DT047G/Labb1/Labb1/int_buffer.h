@@ -1,3 +1,7 @@
+// Laboration 1 - Programmeringsmetodik, dt047g
+// Timmy Nord (tino1800)
+// main.cpp Created 10 Nov, Last edited 19 Nov
+// är header för int_buffer med sina klassmedlemmar samt klassmetoder
 #pragma once
 #ifndef INT_BUFFER_H
 #define INT_BUFFER_H
@@ -39,17 +43,9 @@ public:
 
 	~int_buffer();
 
-	/*friend void swap(int_buffer& curr, int_buffer& other)
-	{
-		using std::swap;
-		swap(curr, other);
-	}
-	*/
 private:
 	int* startPtr;
 	int* endPtr;
 	void swap(int_buffer& rhs);
-	//std::unique_ptr<int> startPtr;
-	//std::unique_ptr<int> endPtr;
 };
 #endif
